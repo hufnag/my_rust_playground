@@ -48,14 +48,16 @@ fn main() {
     println!("cargo:rerun-if-changed=deps/cpp_lib/cpp_lib/include/cpp_lib/user_age_table.h");
     println!("cargo:rerun-if-changed=deps/cpp_lib/cpp_lib/user_age_table.cpp");
 
-    // Build protobuf files
-    prost_build::compile_protos(
-        &[
-            "proto/playground/user.proto",
-            "proto/playground/objects/car.proto",
-        ],
-        &["proto/"],
-    )
-    .expect("Failed to compile proto files");
+    // Build protobuf and gRPC files
+    tonic_prost_build::configure()
+        .compile_protos(
+            &[
+                "proto/playground/user.proto",
+                "proto/playground/objects/car.proto",
+                "proto/playground/service.proto",
+            ],
+            &["proto/"],
+        )
+        .expect("Failed to compile protobuf and gRPC files");
     println!("cargo:rerun-if-changed=proto/");
 }

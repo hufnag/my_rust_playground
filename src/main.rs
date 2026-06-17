@@ -1,5 +1,6 @@
 mod c_lib_wrapper;
 mod cpp_lib_wrapper;
+mod grpc_service_implementation;
 mod protobuf;
 
 fn main() {

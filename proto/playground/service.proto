@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package playground;
+
+import "playground/user.proto";
+
+service TestService {
+  rpc AddUser(AddUserRequest) returns (AddUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc AddUsers(stream AddUsersRequest) returns (AddUsersResponse);
+  rpc GetUsers(GetUsersRequest) returns (stream GetUsersResponse);
+  rpc LoopBack(stream LoopBackRequest) returns (stream LoopBackResponse);
+}
+
+message AddUserRequest {
+  User user = 1;
+}
+
+message AddUserResponse {
+  int32 id = 1;
+}
+
+message GetUserRequest {
+  int32 id = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message AddUsersRequest {
+  User user = 1;
+}
+
+message AddUsersResponse {
+  repeated int32 ids = 1;
+}
+
+message GetUsersRequest {
+  repeated int32 ids = 1;
+}
+
+message GetUsersResponse {
+  User users = 1;
+}
+
+message LoopBackRequest {
+  User user = 1;
+}
+
+message LoopBackResponse {
+  User user = 1;
+}
