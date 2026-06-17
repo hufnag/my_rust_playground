@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package playground;
+
+import "playground/objects/car.proto";
+
+enum Sex {
+  SEX_UNSPECIFIED = 0;
+  SEX_MALE = 1;
+  SEX_FEMALE = 2;
+  SEX_OTHER = 3;
+}
+
+message Adress {
+  string street = 1;
+  string city = 2;
+  string zip = 3;
+}
+
+message User {
+  /// The name of the user
+  string name = 1;
+  /// The Age of the user.
+  int32 age = 2;
+  optional string email = 3;
+  Adress main_address = 4;
+  repeated Adress additional_addresses = 5;
+  Sex sex = 6;
+  repeated playground.objects.Car cars = 7;
+}

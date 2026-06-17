@@ -1,5 +1,6 @@
 mod c_lib_wrapper;
 mod cpp_lib_wrapper;
+mod protobuf;
 
 fn main() {
     let result = c_lib_wrapper::add(3, 5);

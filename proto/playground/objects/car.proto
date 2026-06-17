@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package playground.objects;
+
+message Car {
+  string make = 1;
+  string model = 2;
+  int32 year = 3;
+}
