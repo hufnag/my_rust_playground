@@ -5,8 +5,12 @@ edition = "2024"
 
 [dependencies]
 cxx = "1.0"
+eframe = "0.34.3"
+egui_plot = "0.35.0"
+plotly = "0.14.1"
+plotters = "0.3"
 prost = "0.14"
-tokio = { version = "1.52", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.52", features = ["macros", "rt-multi-thread", "time"] }
 tokio-stream = { version = "0.1", features = ["net"] }
 tonic = "0.14"
 tonic-prost = "0.14"
