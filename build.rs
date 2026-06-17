@@ -33,4 +33,18 @@ fn main() {
 
     // Tell Cargo to rerun if C files or headers change
     println!("cargo:rerun-if-changed=deps/c_lib");
+
+    cxx_build::bridge("src/cpp_lib_wrapper.rs")
+        .file("deps/cpp_lib/cpp_lib/user_age_table.cpp")
+        .file("deps/cpp_lib/rust_bridge/user_age_table_bridge.cpp")
+        .include("deps/cpp_lib/rust_bridge/include")
+        .include("deps/cpp_lib/cpp_lib/include")
+        .std("c++23")
+        .compile("cpp_lib");
+
+    println!("cargo:rerun-if-changed=src/cpp_lib_wrapper.rs");
+    println!("cargo:rerun-if-changed=deps/cpp_lib/rust_bridge/include/user_age_table_bridge.h");
+    println!("cargo:rerun-if-changed=deps/cpp_lib/rust_bridge/user_age_table_bridge.cpp");
+    println!("cargo:rerun-if-changed=deps/cpp_lib/cpp_lib/include/cpp_lib/user_age_table.h");
+    println!("cargo:rerun-if-changed=deps/cpp_lib/cpp_lib/user_age_table.cpp");
 }
